@@ -1,0 +1,12 @@
+%h2
+  Bar
+  = @bar.name
+  = "(#{@bar.id})"
+
+%h3
+  = pluralize(@bar.bar_songs.count, "song")
+
+%ul
+  - @bar.bar_songs.each do |bar_song|
+    %li[bar_song]
+      = render :partial => "/bar_songs/show", :locals => {:bar_song => bar_song}

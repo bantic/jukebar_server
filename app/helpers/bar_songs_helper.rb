@@ -1,0 +1,2 @@
+module BarSongsHelper
+end
