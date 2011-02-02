@@ -1,6 +1,4 @@
 JukebarServer::Application.routes.draw do
-  get "actions/latest"
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
   
@@ -9,9 +7,15 @@ JukebarServer::Application.routes.draw do
       post "register"
     end
     
+    resources :actions do
+      collection do
+        post "reserve"
+      end
+    end
+    
     resources :bar_songs do
       member do
-        post "play"
+        post "vote"
       end
     end
   end

@@ -15,6 +15,8 @@ ActiveRecord::Schema.define(:version => 20110123222155) do
   create_table "actions", :force => true do |t|
     t.string   "action_type"
     t.string   "data"
+    t.boolean  "viewed",      :default => false
+    t.integer  "bar_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

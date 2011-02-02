@@ -3,6 +3,8 @@ class CreateActions < ActiveRecord::Migration
     create_table :actions do |t|
       t.string :action_type
       t.string :data
+      t.boolean :viewed, :default => false
+      t.references :bar
 
       t.timestamps
     end

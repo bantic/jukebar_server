@@ -1,6 +1,8 @@
 class BarSongsController < ApplicationController
+  before_filter :load_bar
+  
+  # API method
   def create
-    @bar = Bar.find_by_id(params[:bar_id])
     if @bar_song = @bar.bar_songs.find_by_database_ID(params[:bar_song][:database_ID])
       puts "Skipping extant song #{@bar_song.to_json}"
       ; # do nothing
@@ -11,8 +13,16 @@ class BarSongsController < ApplicationController
     head :ok
   end
   
-  def play
-    @bar_song = BarSong.find(params[:id])
+  def vote
+    @bar_song = @bar.bar_songs.find(params[:id])
     @bar_song.play!
+    
+    redirect_to bar_url(@bar)
+  end
+  
+  private
+  
+  def load_bar
+    @bar = Bar.find(params[:bar_id])
   end
 end
