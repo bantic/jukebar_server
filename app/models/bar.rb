@@ -3,6 +3,7 @@ class Bar < ActiveRecord::Base
   has_many :actions, :order => "created_at ASC"
   
   def register!
+    self.bar_songs.clear
     Action.create!(:action_type => "register_bar", :data => self.id, :bar => self)
   end
   
