@@ -6,7 +6,10 @@
   Bar status
   = @bar.status
   - if @bar.bar_song
-    = @bar.bar_song.to_json.inspect
+    %br
+    = @bar.bar_song.name
+    by
+    = @bar.bar_song.artist
 
 %h3
   = pluralize(@bar.bar_songs.count, "song")
