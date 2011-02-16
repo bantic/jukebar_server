@@ -2,6 +2,11 @@
   Bar
   = @bar.name
   = "(#{@bar.id})"
+%h3
+  Bar status
+  = @bar.status
+  - if @bar.bar_song
+    = @bar.bar_song.to_json.inspect
 
 %h3
   = pluralize(@bar.bar_songs.count, "song")

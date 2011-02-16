@@ -5,12 +5,8 @@ JukebarServer::Application.routes.draw do
   resources :bars do
     member do 
       post "register"
-    end
-    
-    resources :actions do
-      collection do
-        post "reserve"
-      end
+      get "next_song"
+      post "status"
     end
     
     resources :bar_songs do

@@ -1,0 +1,2 @@
+module BarSongs::VotesHelper
+end

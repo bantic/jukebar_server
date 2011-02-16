@@ -1,7 +1,15 @@
 class BarSong < ActiveRecord::Base
   belongs_to :bar, :dependent => :destroy
+  has_many :votes, :dependent => :destroy
   
-  def play!
-    Action.create!(:action_type => "play", :data => self.database_ID, :bar => self.bar)
+  def vote!
+    Vote.create!(:bar_song => self, :active => true)
+  end
+  
+  def inactivate_votes!
+    votes.active.all.each do |vote|
+      vote.active = false
+      vote.save!
+    end
   end
 end

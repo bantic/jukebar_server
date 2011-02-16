@@ -10,16 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110123222155) do
-
-  create_table "actions", :force => true do |t|
-    t.string   "action_type"
-    t.string   "data"
-    t.boolean  "viewed",      :default => false
-    t.integer  "bar_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20110216013110) do
 
   create_table "bar_songs", :force => true do |t|
     t.string   "name"
@@ -30,8 +21,20 @@ ActiveRecord::Schema.define(:version => 20110123222155) do
     t.datetime "updated_at"
   end
 
+  add_index "bar_songs", ["database_ID"], :name => "index_bar_songs_on_database_ID"
+
   create_table "bars", :force => true do |t|
     t.string   "name"
+    t.string   "status"
+    t.integer  "bar_song_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "votes", :force => true do |t|
+    t.integer  "bar_song_id"
+    t.integer  "user_id"
+    t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

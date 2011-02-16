@@ -8,6 +8,8 @@ class CreateBarSongs < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :bar_songs, :database_ID
   end
 
   def self.down

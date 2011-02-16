@@ -2,7 +2,9 @@ class CreateBars < ActiveRecord::Migration
   def self.up
     create_table :bars do |t|
       t.string :name
-
+      t.string :status
+      t.integer :bar_song_id
+      
       t.timestamps
     end
   end

@@ -14,9 +14,8 @@ class BarSongsController < ApplicationController
   end
   
   def vote
-    @bar_song = @bar.bar_songs.find(params[:id])
-    @bar_song.play!
-    
+    @bar_song = BarSong.find(params[:id])
+    @bar_song.vote!
     redirect_to bar_url(@bar)
   end
   
