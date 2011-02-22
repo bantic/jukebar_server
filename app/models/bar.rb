@@ -23,7 +23,7 @@ class Bar < ActiveRecord::Base
     case action_type
     when /playing/
       self.status = "playing"
-      if bar_song = BarSong.find_by_database_ID(args[0])
+      if bar_song = BarSong.find_by_database_ID_and_bar_id(args[0], self.id)
         self.bar_song = bar_song
         self.bar_song.inactivate_votes!
       end
