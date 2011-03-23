@@ -16,5 +16,5 @@
 
 %ul{:id => "bar_songs_list"}
   - @bar.bar_songs.sort_by{|bar_song| bar_song.votes.active.count }.reverse.each do |bar_song|
-    %li{:class => "bar_song", :"data-votes" => bar_song.votes.active.count, :id => "bar_song#{bar_song.to_param}"}
+    %li{:class => "bar_song", :id => "bar_song#{bar_song.to_param}"}
       = render :partial => "/bar_songs/show", :locals => {:bar_song => bar_song}

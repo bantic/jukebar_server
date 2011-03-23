@@ -17,10 +17,9 @@
   barchannel.bind("vote-create", function(bar_song) {
     song = bar_song;
     console.log("new vote created for song: " + song.name);
-    var votes = $("#bar_song" + song.id).data("votes");
+    var votes = parseInt($("#bar_song" + song.id + " .actual_vote_count").html(), 10);
     console.log("current votes for song: " + votes);
     votes++;
-    $("#bar_song" + song.id).data("votes",votes);
     $("#bar_song" + song.id + " .actual_vote_count").html(votes);
     sortBarSongsByVotes();
   });
