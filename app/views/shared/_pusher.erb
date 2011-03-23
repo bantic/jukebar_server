@@ -1,0 +1,27 @@
+<script src="http://js.pusherapp.com/1.7/pusher.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  // Enable pusher logging - don't include this in production
+  Pusher.log = function() {
+    if (window.console) window.console.log.apply(window.console, arguments);
+  };
+
+  // Flash fallback logging - don't include this in production
+  WEB_SOCKET_DEBUG = true;
+
+  var pusher = new Pusher('938c4515e56c8eb8108e');
+  var channel = pusher.subscribe('test_channel');
+  channel.bind('my_event', function(data) {
+    console.log("got new test data:" + data);
+  });
+  var barchannel = pusher.subscribe("<%= @bar.to_channel %>");
+  barchannel.bind("vote-create", function(bar_song) {
+    song = bar_song;
+    console.log("new vote created for song: " + song.name);
+    var votes = $("#bar_song" + song.id).data("votes");
+    console.log("current votes for song: " + votes);
+    votes++;
+    $("#bar_song" + song.id).data("votes",votes);
+    $("#bar_song" + song.id + " .actual_vote_count").html(votes);
+    sortBarSongsByVotes();
+  });
+</script>

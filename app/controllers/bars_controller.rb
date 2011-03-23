@@ -7,6 +7,7 @@ class BarsController < ApplicationController
   end
   
   def show
+    @render_pusher = true
   end
   
   def next_song

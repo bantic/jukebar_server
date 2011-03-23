@@ -42,4 +42,8 @@ class Bar < ActiveRecord::Base
     set_status(:paused)
   end
   
+  def to_channel
+    "channel-bar-#{self.to_param}"
+  end
+  
 end
