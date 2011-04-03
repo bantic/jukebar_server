@@ -4,6 +4,8 @@
     %title Jukebar server
     = stylesheet_link_tag :all
     = javascript_include_tag :defaults
+    = javascript_include_tag "jukebar"
+    = javascript_include_tag "jquery-growl"
     = csrf_meta_tag
     = render :partial => "/shared/pusher" if @render_pusher
   %body

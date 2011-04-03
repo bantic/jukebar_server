@@ -3,7 +3,7 @@ class BarSong < ActiveRecord::Base
   has_many :votes, :dependent => :destroy
   
   def vote!
-    Pusher[self.bar.to_channel].trigger("vote-create", self.attributes)
+    Pusher[self.bar.to_channel].trigger("vote", self.attributes)
     Vote.create!(:bar_song => self, :active => true)
   end
   

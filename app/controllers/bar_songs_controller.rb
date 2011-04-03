@@ -1,5 +1,6 @@
 class BarSongsController < ApplicationController
   before_filter :load_bar
+  respond_to :json, :only => [:index]
   
   # API method
   def create
@@ -13,10 +14,15 @@ class BarSongsController < ApplicationController
     head :ok
   end
   
+  def index
+    @songs = @bar.bar_songs
+    respond_with(@songs)
+  end
+  
   def vote
     @bar_song = BarSong.find(params[:id])
     @bar_song.vote!
-    redirect_to bar_url(@bar)
+    head :created
   end
   
   private
