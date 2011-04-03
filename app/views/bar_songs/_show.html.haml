@@ -11,4 +11,4 @@
   Votes:
   .actual_vote_count= bar_song.votes.active.count
 .play
-  = button_to "Vote now!", :action => "vote", :id => bar_song.id, :bar_id => @bar.id, :controller => "bar_songs"
+  = button_to "Vote now!", {:action => "vote", :id => bar_song.id, :bar_id => @bar.id, :controller => "bar_songs"}, {:remote => true}
