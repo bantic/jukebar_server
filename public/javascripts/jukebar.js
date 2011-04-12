@@ -1,23 +1,35 @@
 var songs;
 function JukeBarClient() {
   this.songs = {};
-  this.votes = {};
   this.addSong = function(song) {
-    this.songs[songs[i].id] = songs[i];
-  }
+    this.songs[song.id] = song;
+  };
   this.voteForSong = function(song) {
-    this.votes[song.id] = this.votes[song.id] || 0;
-    this.votes[song.id]++;
-    console.log("vote for song %o", song);
-  }
+    this.songs[song.id].active_vote_count++;
+    var votes = this.songs[song.id].active_vote_count;
+    $("#bar_song_" + song.id + " .actual_vote_count").html(votes);
+    console.log("vote for song %o", song,"total votes:",votes);
+    this.sortBarSongsByVotes();
+  };
   this.loadSongs = function(bar_id) {
+    var that = this;
     jQuery.getJSON("/bars/" + bar_id + "/bar_songs/", function(song_array) {
       for (var i = 0; i < song_array.length; i++) {
         var song = new Song(song_array[i]);
-        this.addSong(song);
+        that.addSong(song);
       }
     });
-  }
+  };
+  
+  this.sortBarSongsByVotes = function() {
+    bar_songs_list = $("#bar_songs_list");
+    bar_song_divs = {};
+    bar_songs_list.append(bar_songs_list.children("li").get().sort(function(a,b) {
+      var aVotes = $(a).find(".actual_vote_count").text(),
+          bVotes = $(b).find(".actual_vote_count").text();
+      return (aVotes > bVotes ? 1 : aVotes < bVotes ? -1 : 0);
+    }).reverse());
+  };
 }
 
 function Song(attributes) {
@@ -25,6 +37,10 @@ function Song(attributes) {
   this.artist = attributes.artist;
   this.name = attributes.name;
   this.bar_id = attributes.bar_id;
+  this.active_vote_count = attributes.active_vote_count;
 }
 
 var jukebar = new JukeBarClient();
+$(function() {
+  jukebar.loadSongs(1);
+});

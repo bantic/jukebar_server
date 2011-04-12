@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110216013110) do
+ActiveRecord::Schema.define(:version => 20110412004805) do
 
   create_table "bar_songs", :force => true do |t|
     t.string   "name"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20110216013110) do
     t.integer  "bar_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "active_vote_count", :default => 0
   end
 
   add_index "bar_songs", ["database_ID"], :name => "index_bar_songs_on_database_ID"

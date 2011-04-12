@@ -14,7 +14,5 @@
 %h3
   = pluralize(@bar.bar_songs.count, "song")
 
-%ul{:id => "bar_songs_list"}
-  - @bar.bar_songs.sort_by{|bar_song| bar_song.votes.active.count }.reverse.each do |bar_song|
-    %li{:class => "bar_song", :id => "bar_song#{bar_song.to_param}"}
-      = render :partial => "/bar_songs/show", :locals => {:bar_song => bar_song}
+- bar_songs = @bar.bar_songs.sort_by{|bar_song| bar_song.votes.active.count }.reverse
+%ul{:id => "bar_songs_list"}= render :partial => "/bar_songs/show", :collection => bar_songs, :as => :bar_song

@@ -12,5 +12,7 @@ class BarSong < ActiveRecord::Base
       vote.active = false
       vote.save!
     end
+    self.active_vote_count = 0
+    save!
   end
 end
