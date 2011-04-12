@@ -6,7 +6,6 @@ JukebarServer::Application.routes.draw do
     member do 
       post "register"
       get "next_song"
-      post "status"
     end
     
     resources :bar_songs do
@@ -15,6 +14,8 @@ JukebarServer::Application.routes.draw do
       end
     end
   end
+  
+  resources :users
   
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

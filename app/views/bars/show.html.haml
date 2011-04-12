@@ -10,6 +10,9 @@
     = @bar.bar_song.name
     by
     = @bar.bar_song.artist
+%h3
+  You are:
+  %strong= @user.name
 
 %h3
   = pluralize(@bar.bar_songs.count, "song")

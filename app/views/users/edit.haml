@@ -1,0 +1,8 @@
+- if flash[:error]
+  %strong
+    There was an error...try again.
+= form_for @user do |f|
+  enter your name
+  = f.text_field :name
+  %br
+  = f.submit
