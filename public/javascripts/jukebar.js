@@ -43,4 +43,11 @@ function Song(attributes) {
 var jukebar = new JukeBarClient();
 $(function() {
   jukebar.loadSongs(1);
+  $(".bar_song").bind("ajax:success", function(evt, data, status, xhr) {
+    console.log("ajax success!",arguments);
+  });
+  $(".bar_song").bind("ajax:error", function(evt, data, status, xhr) {
+    alert("You need to get more credits!");
+    console.log("ajax error!",arguments);
+  });
 });

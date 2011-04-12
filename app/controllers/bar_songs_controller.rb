@@ -1,5 +1,5 @@
 class BarSongsController < ApplicationController
-  before_filter :load_bar
+  before_filter :load_bar, :load_user
   respond_to :json, :only => [:index]
   
   # API method
@@ -21,8 +21,12 @@ class BarSongsController < ApplicationController
   
   def vote
     @bar_song = BarSong.find(params[:id])
-    @bar_song.vote!
-    head :created
+    if @user.can_vote?
+      @user.vote(@bar_song)
+      head :created
+    else
+      head 402
+    end
   end
   
   private

@@ -1,6 +1,9 @@
-* add users so that we can track user actions and limit per user actions/votes
+## todo ##
 * better UI for the votes...songs should float into position when they are voted upon, to avoid people having trouble when trying to click on a song as it is being voted on
-* voting should be ajaxy instead of reloading the page
 * we should have receivers for all actions, not just votes (i.e., song started/stopped, user joined/left)
 * scope actions to a particular bar
 * bar client needs to upload status, not just download it
+
+## done ##
+* add users so that we can track user actions and limit per user actions/votes
+* voting should be ajaxy instead of reloading the page
