@@ -1,0 +1,42 @@
+<div data-role="page" data-theme="b" id="jqm-home"> 
+	<div id="jqm-homeheader" data-role="header" data-position="fixed">
+	  <h1 id="bar">The JukeBar</h1>
+	  <h2>Currently at: <%= @bar.name %></h2>
+	  <% if @bar.bar_song %>
+  	  <h3>Now playing: <%= @bar.bar_song.name %></h3>
+  	<% end %>
+    <div class="ui-btn-right">
+        Votes Left
+        <div class='remaining_votes ui-corner-top ui-corner-bottom' style='text-align: center; border: 1px solid black; padding: 20px; margin-top: 4px;'>
+          <%= @user.credits %>
+        </div>
+    </div>
+	  
+	  
+	  <div data-role="navbar">
+      <ul>
+        <li><a href="#playlist" data-icon="star" class="ui-btn-active">Playlist</a></li>
+        <li><a href="#find_songs" data-icon="search">Find Songs</a></li>
+        <li><a href="#my_votes" data-icon="grid">My Votes</a></li>
+        <li><a href="#settings" data-icon="gear">Settings</a></li>
+      </ul>
+  	</div><!-- /navbar -->
+	</div> 
+	
+	<div data-role="content"> 
+		<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b"> 
+			<li data-role="list-divider">Overview</li> 
+		</ul> 
+		
+		<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b"> 
+			<li data-role="list-divider">Songs</li>
+			<% bar_songs = @bar.bar_songs.sort_by{|bar_song| bar_song.votes.active.count }.reverse %>
+			<% bar_songs.each do |bar_song| %>
+			  <li class='bar_song' id="bar_song<%= bar_song.to_param %>">
+		      <%= bar_song.name %>,
+		      <%= bar_song.artist %>
+		    </li>
+			<% end %>
+		</ul> 
+	</div>
+</div>
