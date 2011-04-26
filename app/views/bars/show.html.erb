@@ -24,17 +24,22 @@
 	</div> 
 	
 	<div data-role="content"> 
-		<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b"> 
-			<li data-role="list-divider">Overview</li> 
-		</ul> 
-		
-		<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b"> 
+		<ul data-role="listview" class='ui-listview' data-inset="true" data-theme="c" data-dividertheme="b"> 
 			<li data-role="list-divider">Songs</li>
 			<% bar_songs = @bar.bar_songs.sort_by{|bar_song| bar_song.votes.active.count }.reverse %>
 			<% bar_songs.each do |bar_song| %>
 			  <li class='bar_song' id="bar_song<%= bar_song.to_param %>">
-		      <%= bar_song.name %>,
-		      <%= bar_song.artist %>
+			    <div class='ui-btn-inner ui-li'>
+			      <div class='ui-btn-text'>
+  			      <h3 class='ui-li-heading'>
+  			        <%= bar_song.name %>
+  			      </h3>
+  			      <p class='ui-li-desc'>
+      		      <%= bar_song.artist %>
+  			      </p>
+  			      <div class='ui-li-aside ui-btn'>VOTE!</div>
+  			    </div>
+			    </div>
 		    </li>
 			<% end %>
 		</ul> 
