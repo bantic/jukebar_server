@@ -17,6 +17,14 @@ JukebarServer::Application.routes.draw do
   
   resources :users
   
+  namespace :admin do
+    resources :users do
+      member do
+        post "add_credits"
+      end
+    end
+  end
+  
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action

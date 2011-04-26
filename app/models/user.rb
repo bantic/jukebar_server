@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  validates_uniqueness_of :name, :allow_nil => true
+  validates_uniqueness_of :name
   has_many :votes
   DEFAULT_CREDITS = 10
   
@@ -16,9 +16,13 @@ class User < ActiveRecord::Base
     Vote.create(:bar_song => bar_song, :active => true, :user => self)
   end
   
+  def add_credits(number)
+    self.increment!(:credits, number)
+  end
+  
   private
   
   def default_values
-    self.credits ||= 10
+    self.credits ||= DEFAULT_CREDITS
   end
 end

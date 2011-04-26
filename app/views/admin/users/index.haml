@@ -1,0 +1,15 @@
+%h1 users
+
+%ul
+- @users.each do |user|
+  %li.user[user]
+    .name
+      Name
+      = user.name
+    .credits
+      Credits
+      = user.credits
+    .links
+      = link_to "Add #{User::DEFAULT_CREDITS} credits", add_credits_admin_user_path(user, :credits => User::DEFAULT_CREDITS), :method => :post
+      = link_to "Add 1 credit", add_credits_admin_user_path(user, :credits => 1), :method => :post
+      = link_to "Remove 1 credit", add_credits_admin_user_path(user, :credits => -1), :method => :post
