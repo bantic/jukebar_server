@@ -1,7 +1,7 @@
-- if flash[:error]
-  = error_messages_for @user
-= form_for @user do |f|
-  enter your name
-  = f.text_field :name
-  %br
-  = f.submit
+%div{"data-role" => "page"}
+  - if flash[:error]
+    = error_messages_for @user
+  = form_for @user do |f|
+    %div{"data-role" => "fieldcontain"}
+      %label{:for => "name"} Name
+      = f.text_field :name
