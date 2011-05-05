@@ -33,8 +33,9 @@
 		      <p>
   		      <%= bar_song.artist %>
 		      </p>
+		      <span class="ui-li-count"><%= bar_song.votes.active.count %></span>
 		      <p class='ui-li-aside'>
-		        <a href='#' data-role='button' data-theme="b" class='vote'>Vote!</a>
+		        <a href='#' data-role='button' data-theme="b" class='vote' data-song-id="<%= bar_song.id %>">Vote!</a>
 		      </p>
 		    </li>
 			<% end %>

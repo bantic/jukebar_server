@@ -1,16 +1,12 @@
-jQuery($ =>
+jQuery($ ->
   $(".vote").tap( ->
-    @that = $(this)
-    setTimeout ( => @that.removeClass "ui-btn-active" ), 500
+    that = $(this)
+    console.log $(this).data "song-id"
+    song_id = $(this).data "song-id"
+    $.post("/bars/1/bar_songs/#{ song_id }/vote", (data) ->
+      that.removeClass "ui-btn-active"
+      console.log "HI"
+      console.log song_id
+    );
   )
 )
-# 
-# $(function() {
-#   $(".vote").tap(function(e) {
-#     console.log($(this));
-#     var that = $(this);
-#     setTimeout(function() {
-#       that.removeClass("ui-btn-active");
-#     }, 1000);
-#   });
-# });
