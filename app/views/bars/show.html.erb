@@ -1,3 +1,14 @@
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+    $(".vote").tap(function(e) {
+      console.log($(this));
+      var that = $(this);
+      setTimeout(function() {
+        that.removeClass("ui-btn-active");
+      }, 1000);
+    });
+  });
+</script>
 <div data-role="page" data-theme="b" id="jqm-home"> 
 	<div id="jqm-homeheader" data-role="header" data-position="fixed">
 	  <h1 id="bar">The JukeBar</h1>
@@ -24,22 +35,18 @@
 	</div> 
 	
 	<div data-role="content"> 
-		<ul data-role="listview" class='ui-listview' data-inset="true" data-theme="c" data-dividertheme="b"> 
+		<ul data-role="listview" data-split-icon="gear" data-split-theme="d"> 
 			<li data-role="list-divider">Songs</li>
 			<% bar_songs = @bar.bar_songs.sort_by{|bar_song| bar_song.votes.active.count }.reverse %>
 			<% bar_songs.each do |bar_song| %>
 			  <li class='bar_song' id="bar_song<%= bar_song.to_param %>">
-			    <div class='ui-btn-inner ui-li'>
-			      <div class='ui-btn-text'>
-  			      <h3 class='ui-li-heading'>
-  			        <%= bar_song.name %>
-  			      </h3>
-  			      <p class='ui-li-desc'>
-      		      <%= bar_song.artist %>
-  			      </p>
-  			      <div class='ui-li-aside ui-btn'>VOTE!</div>
-  			    </div>
-			    </div>
+		      <h3><%= bar_song.name %></h3>
+		      <p>
+  		      <%= bar_song.artist %>
+		      </p>
+		      <p class='ui-li-aside'>
+		        <a href='#' data-role='button' data-theme="b" class='vote'>Vote!</a>
+		      </p>
 		    </li>
 			<% end %>
 		</ul> 
