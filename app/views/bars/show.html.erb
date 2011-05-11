@@ -24,11 +24,11 @@
 	</div> 
 	
 	<div data-role="content"> 
-		<ul data-role="listview" data-split-icon="gear" data-split-theme="d"> 
+		<ul data-role="listview" data-split-icon="gear" data-split-theme="d" id="bar_songs"> 
 			<li data-role="list-divider">Songs</li>
 			<% bar_songs = @bar.bar_songs.sort_by{|bar_song| bar_song.votes.active.count }.reverse %>
 			<% bar_songs.each do |bar_song| %>
-			  <li class='bar_song' id="bar_song<%= bar_song.to_param %>">
+			  <li class='bar_song' id="bar_song_<%= bar_song.to_param %>">
 		      <h3><%= bar_song.name %></h3>
 		      <p>
   		      <%= bar_song.artist %>

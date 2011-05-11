@@ -1,6 +1,6 @@
 class BarSongsController < ApplicationController
   before_filter :load_bar, :load_user
-  respond_to :json, :only => [:index]
+  respond_to :json, :only => [:index, :vote]
   
   # API method
   def create
@@ -23,7 +23,7 @@ class BarSongsController < ApplicationController
     @bar_song = BarSong.find(params[:id])
     if @user.can_vote?
       @user.vote(@bar_song)
-      head :created
+      render :json => {:user => @user, :song => @bar_song}
     else
       head 402
     end
