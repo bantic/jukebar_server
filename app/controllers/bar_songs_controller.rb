@@ -1,5 +1,6 @@
 class BarSongsController < ApplicationController
-  before_filter :load_bar, :load_user
+  before_filter :load_bar
+  before_filter :load_user, :except => [:create]
   respond_to :json, :only => [:index, :vote]
   
   # API method
